@@ -1,32 +1,33 @@
-# Data Sources & Availability
+# Visualization of Sarcoma-CAF Heterogeneity
 
-This directory provides an overview of the datasets utilized in the **Sarcoma-CAF** project, including integrated public repositories and local clinical cohorts.
+This directory contains key visualizations derived from our integrative single-cell pipeline. 
 
-## 1. Public Datasets (GEO)
-We performed a cross-cohort integration of **4 independent single-cell RNA sequencing datasets** from the NCBI Gene Expression Omnibus (GEO). This allows for a robust meta-analysis of Sarcoma-Associated Fibroblast (SAF) heterogeneity.
+> **Note:** This project is under active development. Visualizations are being updated as the analysis progresses.
 
-| Accession ID | Tumor Type | Technology | Description |
-| :--- | :--- | :--- | :--- |
-| **GSE152048** | Osteosarcoma | 10x Genomics | Mapping the cellular landscape of primary osteosarcoma. |
-| **GSE162454** | Sarcoma | 10x Genomics | Focus on tumor microenvironment and immune infiltration. |
-| **GSE169396** | Osteosarcoma | 10x Genomics | Characterizing malignant cell states and stromal niche. |
-| **GSE198896** | Osteosarcoma | 10x Genomics | Integrated analysis of primary and metastatic lesions. |
+## 1. Marker Gene Expression Analysis (Boxplots) 
+**Status: ✅ Updated**
 
-## 2. Clinical Cohort (Local)
-To validate the *in silico* findings derived from the GEO cohorts, we integrated local clinical samples from our collaborating medical centers.
-- **Sample Type:** Freshly resected Sarcoma tissues and matched para-cancerous tissues.
-- **Source:** Academic medical centers affiliated with Shanghai University of Medicine & Health Sciences (SUMHS).
-- **Data Privacy:** Raw sequencing data and processed matrices are stored on a secure local server in compliance with institutional data security regulations.
+- **Description:** Statistical distribution of canonical markers across identified cell clusters.
+- **Key Insight:** Boxplots demonstrate a significantly higher expression of *FAP*, *COL1A1*, and *PDPN* in the CAF clusters compared to malignant and other stromal cells (p < 0.001).
+- **Update Log:** Currently showcasing primary sarcoma cohorts; clinical validation samples will be added shortly.
 
-## 3. Data Processing & Integration Pipeline
-To mitigate batch effects across the four GEO series and clinical samples, we employed a standardized computational workflow:
-1. **Preprocessing:** Strict quality control (QC) filtering based on UMI counts, feature counts, and mitochondrial gene percentage (<15%).
-2. **Doublet Detection:** Removal of potential doublets using `DoubletFinder` or `scrublet`.
-3. **Integration:** Systematic alignment using **Harmony** or **Seurat V5 integration (CCA/RPCA)** to resolve cohort-specific variations while preserving biological heterogeneity.
-4. **Annotation:** Manual cell-type annotation guided by canonical markers (e.g., *COL1A1*, *ACTA2*, *FAP* for CAFs).
+## 2. Integrated Cellular Landscape (UMAP)
+**Status: ⏳ In Progress (Expected Update: Next Week)**
 
-## 4. Ethical Statement
-All local clinical sample collection protocols were approved by the Institutional Review Board (IRB). Informed consent was obtained from all patients according to the Declaration of Helsinki.
+- **Plan:** Generating a harmonized UMAP plot integrating 4 GEO cohorts (GSE152048, GSE162454, GSE169396, GSE198896).
+- **Goal:** To visualize the consistency of CAF sub-populations across different patient data sources after batch effect correction via Harmony.
+
+## 3. Intercellular Communication Networks (Dot Plots)
+**Status: 📅 Planned**
+
+- **Plan:** Utilizing `CellChat` to visualize ligand-receptor interactions.
+- **Goal:** Identifying the signaling axes between **Sarcoma-CAFs** and immune cells that drive the immunosuppressive microenvironment.
+
+## 4. Spatial Distribution Analysis
+**Status: 📅 Planned**
+
+- **Plan:** Overlaying scRNA-seq signatures onto spatial transcriptomic slides.
+- **Goal:** To confirm the architectural localization of iCAF and myCAF niches within the sarcoma tissue.
 
 ---
-*For questions regarding the data processing pipeline or metadata, please contact the project maintainer.*
+*All plots are generated using R/ggplot2. Data is iteratively processed to ensure the highest biological accuracy.*
